@@ -1,0 +1,28 @@
+（旧）关键点新数据标注流程：
+一、生成预标注csv：
+单个文件:python product_anns/infer_tflite_movenet.py C:/Users/dell/Desktop/Asit-up/20211022-190035/images product_anns/model_float32.tflite
+批量生成：python product_anns/infer_tflite_movenet_batch.py C:\Users\dell\Desktop\2022-09/ product_anns/model_float32.tflite
+二、生成预标注文件txt xml：
+python product_anns/yd_pose2hat.py C:\Users\dell\Desktop\2022-09 blaze
+三、标注csv生成，删除预标注csv：（可视化）
+python label_data/hat2yd.py C:\Users\dell\Desktop\fsdownload
+四、生成annotations文件夹：
+python label_data/yd_pose2final_train.py -json_name=pull-up -img_path=C:\Users\dell\Desktop\fsdownload\pull-up_test
+五、利用json生成可视化图片
+anno_coco_csv_muti_v2.py
+
+
+
+（新）关键点新数据标注流程：
+一、生成预标注xml、txt、配置文件：tflite_anno.py
+二、标注csv生成，删除预标注csv：
+python label_data/hat2yd.py C:\Users\dell\Desktop\2022-09
+三、生成annotations文件夹：
+python label_data/yd_pose2final_train.py -json_name=sit-up -img_path=C:\Users\dell\Desktop\2022-09
+
+
+修正数据流程：
+1.从服务器拉取单个通用数据文件夹，只保留images图片
+2.json标注转标注，生成xml、txt、配置文件：
+python ann_data/anno_general_json_2_xml.py -json_path=C:/Users/dell/Desktop/fsdownload/unfix_pull-up-0.json -save_path=C:/Users/dell/Desktop/fsdownload/pull-up-0 -config_path=C:/Users/dell/Desktop/xml/config_person.xml
+3.修正完数据，上传服务器（146和201），删除原来通用数据文件夹（需要权限）

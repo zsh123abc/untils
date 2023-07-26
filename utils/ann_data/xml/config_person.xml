@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HATConfig>
+
+<Dataset name="person" />
+
+<!--If the image directory is not located in ./images, specify its location-->
+<!--
+<RootDirectory value="/hat/data" /> 
+-->
+
+<!-- Optionally specifies the file containing the index list of the annotations. The default is "annotation_list.txt" which in H3D is the list of all annotations. You can use this to run the Java annotation tool on just the training or test annotations or another subset of your choice -->
+<!--
+<AnnotationListName value="val_annotation_list.txt" /> 
+-->
+
+<!--Subcategories, if any. They will appear as horizontal radio buttons in the UI, so not too many-->
+<Subcategory name="male" />
+<Subcategory name="female" />
+<Subcategory name="baby" />
+
+<!--If marking segmentations, the name, color and shortcut key for each region-->
+<Region name="Occluder"      key="o" color="0000AA" />
+<Region name="UpperClothes" key="u" color="FF5500" />
+<Region name="LowerClothes" key="c" color="0055FF" />
+<Region name="LeftArm"      key="A" color="00AAFF" />
+<Region name="RightArm"     key="a" color="00FFFF" />
+<Region name="LeftLeg"      key="L" color="55FFAA" />
+<Region name="RightLeg"     key="l" color="AAFF55" />
+<Region name="LeftShoe"     key="S" color="FFFF00" />
+<Region name="RightShoe"    key="s" color="FFAA00" />
+<Region name="Face"          key="f" color="0000FF" />
+<Region name="Hair"          key="h" color="FF0000" />
+<Region name="Neck"          key="n" color="008000" />
+<Region name="Bag"           key="b" color="000080" />
+<Region name="Hat"           key="t" color="800000" />
+<Region name="Dress"         key="d" color="000055" />
+<Region name="LeftGlove"    key="G" color="005500" />
+<Region name="RightGlove"   key="g" color="550000" />
+<Region name="LeftSock"     key="K" color="005555" />
+<Region name="RightSock"    key="k" color="555500" />
+<Region name="Sunglasses"    key="e" color="AA0000" />
+<Region name="BadSegment"   key="x" color="FFFFFF" />
+
+<!--Keypoint names, optional shortcuts and optional parent keypoints
+    The parent keypoints are only needed if you want to infer the 3D.
+    Helper keypoints are ones that can be inferred from others. They are not displayed nor saved
+    When specifying the parent, you can optionally specify the normalized length of the segment in 3D,
+    which could be optionally different for each subcategory. The length is needed for inferring 3D
+    See C. Taylor. "Reconstruction of Articulated Objects from Point Correspondences in a Single Image"
+    
+    3D reconstruction is enabled only with the person category.
+    However, if you use the same keypoints, with the same names as below,
+    you can use 3D for other mammal categories.
+-->
+<Keypoint name="Nose"       key="y"/>
+<Keypoint name="L_Eye"      key="h" parent="R_Eye"/>
+<Keypoint name="R_Eye"      key="g"/>
+<Keypoint name="L_Ear"      key="u"/>
+<Keypoint name="R_Ear"      key="t"/>
+<Keypoint name="L_Shoulder" locale_name="左肩" key="w" parent="R_Shoulder" length="120" Female="110" Child="115"/>
+<Keypoint name="L_Elbow"    locale_name="左肘" key="s" parent="L_Shoulder" length="96"/>
+<Keypoint name="L_Wrist"    locale_name="左腕" key="x" parent="L_Elbow"    length="80.5"/>
+<Keypoint name="R_Shoulder" locale_name="右肩" key="q" parent="R_Hip"/>
+<Keypoint name="R_Elbow"    locale_name="右肘" key="a" parent="R_Shoulder" length="96"/>
+<Keypoint name="R_Wrist"    locale_name="右腕" key="z" parent="R_Elbow"    length="80.5"/>
+<Keypoint name="L_Hip"      locale_name="左髋" key="r" parent="L_Shoulder"/>
+<Keypoint name="L_Knee"     locale_name="左膝" key="f" parent="L_Hip"      length="144"/>
+<Keypoint name="L_Ankle"    locale_name="左踝" key="v" parent="L_Knee"     length="130"/>
+<Keypoint name="R_Hip"      locale_name="右髋" key="e" parent="L_Hip"      length="67"/>
+<Keypoint name="R_Knee"     locale_name="右膝" key="d" parent="R_Hip"      length="144"/>
+<Keypoint name="R_Ankle"    locale_name="右踝" key="c" parent="R_Knee"     length="130"/>
+<Keypoint name="L_Toes"     key="p" parent="L_Ankle"      length="45"/>
+<Keypoint name="R_Toes"    key="o" parent="R_Ankle"     length="45"/>
+<Keypoint name="B_Head"     locale_name="头顶" key="j" />
+<Keypoint name="Neck"       locale_name="脖子" key="m" parent="B_Head"/>
+<Keypoint name="Pelvis"    key="m" parent="Neck"/>
+<Keypoint name="Spine"    key="m" parent="Pelvis"/>
+<Keypoint name="M_Shoulder"         parent="R_Shoulder"              helperKeypoint="true"/>
+<Keypoint name="M_Hip"              parent="M_Shoulder" length="153" helperKeypoint="true"/>
+</HATConfig>

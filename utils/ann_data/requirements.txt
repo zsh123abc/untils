@@ -1,0 +1,5 @@
+matplotlib==2.2.2
+numpy==1.15.1
+opencv_python==3.4.18.65
+pandas==1.1.5
+tensorflow==2.12.0
